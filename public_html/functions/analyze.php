@@ -1,11 +1,3 @@
-<?php
-	require_once($_SERVER["DOCUMENT_ROOT"]."/functions/password.class.php");
-
-	if(isset($_POST["password"])) {
-		$password = new Password($_POST["password"]);
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -23,8 +15,27 @@
   </head>
 
   <body>
-  	<span>Password: <?php echo($password->clear); ?></span><br>
-  	<span>Password: <?php echo($password->sha1); ?></span><br>
+    <p>
+      <?php
+        // Files to include.
+        require_once($_SERVER["DOCUMENT_ROOT"]."/functions/password.class.php");
+
+        // Create a new password object.
+        if(isset($_POST["password"])) {
+          $password = new Password($_POST["password"]);
+        }
+
+        // Output to screen.
+        if($password->breached) {
+          echo("The password \"".$password->password."\" has been breached!");
+        } else {
+          echo("The password \"".$password->password."\" is currently safe from breaches.");
+        }
+
+        // Remove the password object.
+        unset($password);
+      ?>
+    </p>
 
     <script type="text/javascript" src="/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
