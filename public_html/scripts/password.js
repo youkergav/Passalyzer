@@ -1,6 +1,6 @@
-$("#frmSubmit").click(function() {
-	if($("#frmPassword").val()) {
-		var postData = {password: $("#frmPassword").val()};
+function validatePassword(input) {
+	if(input) {
+		var postData = {password: input};
 
 		$.ajax({
 			type: "POST",
@@ -16,4 +16,4 @@ $("#frmSubmit").click(function() {
 			}
 		});
 	}
-});
+}
