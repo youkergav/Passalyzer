@@ -15,15 +15,18 @@
   </head>
 
   <body>
-    <form method="post" action="/functions/analyze.php">
+    <div id="container">
       <label for="inputPassword">Password: </label>
-      <input type="text" id="inputPassword" name="password">
+      <input type="text" id="frmPassword" name="password">
 
-      <input type="submit" value="Analyze">
-    </form>
+      <input type="button" id="frmSubmit" value="Analyze">
+
+      <p id="result"></p>
+    </div>
 
     <script type="text/javascript" src="/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/scripts/password.js"></script>
   </body>
 </html>
