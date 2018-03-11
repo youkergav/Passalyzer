@@ -2,11 +2,19 @@
 	class Password {
 		// Define static properties.
 		public $password;
+		public $lenPass;
+		public $lenAlpha;
+		public $lenNumeric;
+		public $lenSpecial;
 		public $breached;
 
 		// Constructor for password object.
 		public function __construct($input) {
 			$this->password = $input;
+			$this->lenPass= strlen($input);
+			$this->lenAlpha = strLen(preg_replace("/[0-9]+/", "", $input));
+			$this->lenNumeric = strLen(preg_replace("/[^0-9]+/", "", $input));
+			$this->lenSpecial = strLen(preg_replace("/[A-Za-z0-9]+/", "", $input));
 			$this->isBreached();
 		}
 

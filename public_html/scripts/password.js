@@ -8,10 +8,18 @@ function validatePassword(input) {
 			data: postData,
 			url: "functions/analyze.php", 
 			success: function(password) {
-				if(password.breached) {
-					$("#result").html("The password \"" + password.password + "\" has been breached!");
-				} else {
-					$("#result").html("The password \"" + password.password + "\" is safe.");
+				$("#rsPassword").html(password.password);
+				$("#rsLenPass").html(password.lenPass);
+				$("#rsLenAlpha").html(password.lenAlpha);
+				$("#rsLenNumeric").html(password.lenNumeric);
+				$("#rsLenSpecial").html(password.lenSpecial);
+				if(password.breached) {$("#rsBreached").html("&#10003;");} else {$("#rsBreached").html("&#10007;");}
+
+				console.log(password);
+			},
+			statusCode: {
+				500: function() {
+					alert("An error has occured. Please try again later.");
 				}
 			}
 		});
