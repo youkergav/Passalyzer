@@ -8,20 +8,22 @@ function validatePassword(input) {
 			data: postData,
 			url: "functions/analyze.php", 
 			success: function(password) {
-				$("#rsPassword").html(password.password);
 				$("#rsLenPass").html(password.lenPass);
 				$("#rsLenAlpha").html(password.lenAlpha);
 				$("#rsLenNumeric").html(password.lenNumeric);
 				$("#rsLenSpecial").html(password.lenSpecial);
 				if(password.breached) {$("#rsBreached").html("&#10003;");} else {$("#rsBreached").html("&#10007;");}
 
+				$("#results").show()
 				console.log(password);
 			},
 			statusCode: {
 				500: function() {
-					alert("An error has occured. Please try again later.");
+					$("#error").show();
 				}
 			}
 		});
+
+		$("#loading").hide();
 	}
 }

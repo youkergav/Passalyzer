@@ -1,13 +1,17 @@
-$("#frmSubmit").click(function() {
+var timeout = null;
+
+$("#frmPassword").keyup(function() {
+	clearTimeout(timeout);
 	var input = $("#frmPassword").val();
-	validatePassword(input);
-});
 
-$("#frmPassword").keypress(function(k) {
-	if(k.which == 13) {
-		var input = $("#frmPassword").val();
-		validatePassword(input);
+	$("#results").hide();
+	$("#loading").show();
 
-		return false;
-	}
+	timeout = setTimeout(function () {
+        if(input){
+			validatePassword(input);
+		} else {
+			$("#loading").hide();
+		}
+    }, 500);
 });

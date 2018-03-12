@@ -1,13 +1,5 @@
 <?php
 	class Password {
-		// Define static properties.
-		public $password;
-		public $lenPass;
-		public $lenAlpha;
-		public $lenNumeric;
-		public $lenSpecial;
-		public $breached;
-
 		// Constructor for password object.
 		public function __construct($input) {
 			$this->password = $input;

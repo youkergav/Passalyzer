@@ -17,16 +17,12 @@
   <body>
     <div id="container">
       <label for="inputPassword">Password: </label>
-      <input type="text" id="frmPassword" name="password">
-
+      <input type="password" id="frmPassword" name="password">
       <input type="button" id="frmSubmit" value="Analyze">
 
-      <hr>
-      <table id="results">
-        <tr>
-          <td>Password:</td>
-          <td id="rsPassword"></td>
-        </tr>
+      <p id="loading" style="display: none;">Loading...</p>
+
+      <table id="results" style="display: none;">
         <tr>
           <td>Number of Characters:</td>
           <td id="rsLenPass"></td>
@@ -48,6 +44,8 @@
           <td id="rsBreached"></td>
         </tr>
       </table>
+
+      <p id="error" style="display: none;">An error has occured. Please try again later.</p>
     </div>
 
     <script type="text/javascript" src="/scripts/jquery.min.js"></script>
