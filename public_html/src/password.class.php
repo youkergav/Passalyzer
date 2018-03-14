@@ -37,6 +37,7 @@
 			$this->timeCalc = $strength["calc_time"];
 			$this->score = $strength["score"];
 
+<<<<<<< HEAD
 			$matches = array();
 			foreach($strength["match_sequence"] as $item) {
 				$piece = array(
@@ -50,6 +51,8 @@
 			}
 			$this->matches = base64_encode(json_encode($matches));
 
+=======
+>>>>>>> 0dd13c6f9d8d528ae156b806c8fba0618bde203d
 			unset($zxcvbn);
 		}
 
