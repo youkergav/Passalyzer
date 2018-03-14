@@ -83,6 +83,9 @@
       </table>
 
       <p id="error" style="display: none;">An error has occured. Please try again later.</p>
+
+      <hr>
+      <p>Powered by <a href="https://haveibeenpwned.com/" target="_new">HIBP</a> and <a href="https://github.com/dropbox/zxcvbn" target="_new">Zxcvbn</a></p>
     </div>
 
     <script type="text/javascript" src="/scripts/jquery.min.js"></script>
