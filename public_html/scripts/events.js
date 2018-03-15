@@ -1,23 +1,26 @@
 var timeout = null;
 
-$("#frmPassword").keyup(function() {
+$("#inPassword").keyup(function() {
 	clearTimeout(timeout);
-	var input = $("#frmPassword").val();
+	var input = $("#inPassword").val();
 
-	$("#results").hide();
-	$("#matches").hide();
-	$("#loading").show();
+	// Show the loading content.
+	$("#grpPassword #stats").hide();
+	$("#grpPassword #matches").hide();
+	$("#grpPassword #outLoading").show();
 
 	timeout = setTimeout(function () {
         if(input){
-			var rows = $('#matches tbody tr');
+        	// Reset the table body rows.
+			var rows = $("#grpPassword #grpResult tbody tr");
 			for(var i = 0; i < rows.length; i++) {
 				$(rows[i]).remove();
 			}
 
-			validatePassword(input);
+			// Parse out the password data.
+			parsePassword(input);
 		} else {
-			$("#loading").hide();
+			$("#grpPassword #outLoading").hide();
 		}
     }, 500);
 });

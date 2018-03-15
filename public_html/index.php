@@ -16,73 +16,45 @@
 
   <body>
     <div id="container">
-      <label for="inputPassword">Password: </label>
-      <input type="password" id="frmPassword" name="password">
-      <input type="button" id="frmSubmit" value="Analyze">
+      <label for="inPassword">Password: </label>
+      <input type="password" id="inPassword" name="password">
+      <input type="button" id="btnPassword" value="Analyze">
 
-      <p id="loading" style="display: none;">Loading...</p>
+      <div id="grpPassword">
+        <p id="outLoading" style="display: none;">Loading...</p>
 
-      <table id="results" style="display: none;">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Value</th>
-          </tr>
-        </thead>
+        <div id="grpResult">
+          <table id="stats" style="display: none;">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Value</th>
+              </tr>
+            </thead>
 
-        <tbody>
-          <tr>
-            <td>Number of Characters:</td>
-            <td id="rsLenPass"></td>
-          </tr>
-          <tr>
-            <td>Alphabetic Characters:</td>
-            <td id="rsLenAlpha"></td>
-          </tr>
-          <tr>
-            <td>Number Characters:</td>
-            <td id="rsLenNumeric"></td>
-          </tr>
-          <tr>
-            <td>Special Characters:</td>
-            <td id="rsLenSpecial"></td>
-          </tr>
-          <tr>
-            <td>Entropy:</td>
-            <td id="rsEntropy"></td>
-          </tr>
-          <tr>
-            <td>Breached:</td>
-            <td id="rsBreached"></td>
-          </tr>
-          <tr>
-            <td>Crack Time:</td>
-            <td id="rsTimeCrack"></td>
-          </tr>
-          <tr>
-            <td>Score:</td>
-            <td id="rsScore"></td>
-          </tr>
-        </tbody>
-      </table>
+            <tbody>
+            </tbody>
+          </table>
 
-      <br>
+          <br>
 
-      <table id="matches" style="display: none;">
-        <thead>
-          <tr>
-              <th>Token</th>
-              <th>Pattern</th>
-              <th>Entropy</th>
-              <th>Matched Word</th>
-          </tr>
-        </thead>
+          <table id="matches" style="display: none;">
+            <thead>
+              <tr>
+                  <th>Token</th>
+                  <th>Pattern</th>
+                  <th>Entropy</th>
+                  <th>Matched Word</th>
+              </tr>
+            </thead>
 
-        <tbody>
-        </tbody>
-      </table>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
 
-      <p id="error" style="display: none;">An error has occured. Please try again later.</p>
+        <p id="outError" style="display: none;">An error has occured. Please try again later.</p>
+      </div>
 
       <hr>
       <p>Powered by <a href="https://haveibeenpwned.com/" target="_new">HIBP</a> and <a href="https://github.com/dropbox/zxcvbn" target="_new">Zxcvbn</a></p>

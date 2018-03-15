@@ -1,43 +1,42 @@
-function validatePassword(input) {
+function parsePassword(input) {
 	if(input) {
+		// Get the post data.
 		var postData = {password: input};
 
-		$("#matches").hide();
-		var rows = $('#matches tbody tr');
-		for(var i = 0; i < rows.length; i++) {
-			$(rows[i]).remove();
-		}
-
+		// AJAX function to retrieve password data.
 		$.ajax({
 			type: "POST",
 			dataType: "JSON",
 			data: postData,
 			url: "functions/analyze.php", 
 			success: function(password) {
-				$("#loading").hide();
+				// Append the statistic data to the stats table..
+				$("#grpPassword #grpResult #stats tbody").append("<tr><td>Number of Characters:</td><td>" + password.lenPass + "</td></tr>");
+				$("#grpPassword #grpResult #stats tbody").append("<tr><td>Alphabetic Characters:</td><td>" + password.lenAlpha + "</td></tr>");
+				$("#grpPassword #grpResult #stats tbody").append("<tr><td>Numberic Characters:</td><td>" + password.lenNumeric + "</td></tr>");
+				$("#grpPassword #grpResult #stats tbody").append("<tr><td>Special Characters:</td><td>" + password.lenSpecial + "</td></tr>");
+				$("#grpPassword #grpResult #stats tbody").append("<tr><td>Entropy:</td><td>" + password.entropy + "</td></tr>");
+				$("#grpPassword #grpResult #stats tbody").append("<tr><td>Crack Time:</td><td>" + password.timeCrack + "</td></tr>");
+				if(password.breached) {$("#grpPassword #grpResult #stats tbody").append("<tr><td>Breached:</td><td>&#10003;</td></tr>");} else {$("#grpPassword #grpResult #stats tbody").append("<tr><td>Breached:</td><td>&#10007;</td></tr>");}
+				$("#stats tbody").append("<tr><td>Score:</td><td>" + password.score + "</td></tr>");
 
-				$("#rsLenPass").html(password.lenPass);
-				$("#rsLenAlpha").html(password.lenAlpha);
-				$("#rsLenNumeric").html(password.lenNumeric);
-				$("#rsLenSpecial").html(password.lenSpecial);
-				$("#rsEntropy").html(password.entropy);
-				if(password.breached) {$("#rsBreached").html("&#10003;");} else {$("#rsBreached").html("&#10007;");}
-				$("#rsTimeCrack").html(password.timeCrack);
-				$("#rsScore").html(password.score);
-
+				// Append the match data to the matches table.
 				var matches = JSON.parse(atob(password.matches));
 				for(var i = 0; i < matches.length; i++) {
-					$("#matches tbody").append("<tr><td>" + matches[i]["token"] + "</td><td>" + matches[i]["pattern"] + "</td><td>" + matches[i]["entropy"] + "</td><td>" + matches[i]["matchedWord"] + "</td></tr>")
+					$("#grpPassword #grpResult #matches tbody").append("<tr><td>" + matches[i]["token"] + "</td><td>" + matches[i]["pattern"] + "</td><td>" + matches[i]["entropy"] + "</td><td>" + matches[i]["matchedWord"] + "</td></tr>")
 				}
 
-				$("#results").show()
-				$("#matches").show()
+				// Show the password content.
+				$("#grpPassword #outLoading").hide();
+				$("#grpPassword #stats").show()
+				$("#grpPassword #matches").show()
 				console.log(password);
 			},
 			statusCode: {
 				500: function() {
-					$("#loading").hide();
-					$("#error").show();
+					// Show the error content.
+					$("#grpPassword #outLoading").hide();
+					$("#grpPassword #outError").show();
 				}
 			}
 		});

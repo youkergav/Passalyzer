@@ -29,6 +29,7 @@
 			$this->lenSpecial = strLen(preg_replace("/[A-Za-z0-9]+/", "", $input));
 			$this->isBreached();
 
+			// Create zxcvbn object for more info. *REMOVE LATER*
 			$zxcvbn = new Zxcvbn();
 			$strength = $zxcvbn->passwordStrength($input);
 
