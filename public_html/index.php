@@ -16,6 +16,8 @@
 
   <body>
     <div id="container">
+      <h2>Passalyzer</h2>
+
       <label for="inPassword">Password: </label>
       <input type="password" id="inPassword" name="password">
       <input type="button" id="btnPassword" value="Analyze">
@@ -36,9 +38,7 @@
             </tbody>
           </table>
 
-          <br>
-
-          <table id="matches" style="display: none;">
+          <table id="matches" style="display: none; margin-top: 10px;">
             <thead>
               <tr>
                   <th>Token</th>
