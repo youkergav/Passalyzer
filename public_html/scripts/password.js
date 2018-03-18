@@ -26,17 +26,12 @@ function parsePassword(input) {
 					$("#grpPassword #grpResult #matches tbody").append("<tr><td>" + matches[i]["token"] + "</td><td>" + matches[i]["pattern"] + "</td><td>" + matches[i]["entropy"] + "</td><td>" + matches[i]["matchedWord"] + "</td></tr>")
 				}
 
-				// Show the password content.
-				$("#grpPassword #outLoading").hide();
-				$("#grpPassword #stats").show()
-				$("#grpPassword #matches").show()
+				showPassword(password.score);
 				console.log(password);
 			},
 			statusCode: {
 				500: function() {
-					// Show the error content.
-					$("#grpPassword #outLoading").hide();
-					$("#grpPassword #outError").show();
+					showError();
 				}
 			}
 		});
