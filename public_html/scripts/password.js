@@ -21,7 +21,7 @@ function parsePassword(input) {
 					$("#grpPassword #grpResult #matches tbody").append("<tr><td>" + matches[i]["token"] + "</td><td>" + matches[i]["pattern"] + "</td><td>" + matches[i]["entropy"] + "</td><td>" + matches[i]["matchedWord"] + "</td></tr>")
 				}
 
-				showPassword(password.score);
+				showPassword(password.score, password.breached);
 				console.log(password);
 			},
 			statusCode: {

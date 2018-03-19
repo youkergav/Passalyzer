@@ -8,17 +8,22 @@ jQuery.fn.extend({
 
 function reset() {
 	// Show the loading content.
-	$("#grpPassword #outDanger").slideUp();
-	$("#grpPassword #outWarning").slideUp();
-	$("#grpPassword #outSuccess").slideUp();
-	$("#grpPassword #outError").slideUp();
-	$("#inPassword").blur();
+	$("#grpPassword #outResult").slideUp(function() {
+		$("#grpPassword #outResult").removeClass("alert-success");
+		$("#grpPassword #outResult").removeClass("alert-warning");
+		$("#grpPassword #outResult").removeClass("alert-danger");
+		$("#grpPassword #outResult h4.alert-heading").html("");
+		$("#grpPassword #outResult span.alert-message").html("");
+		$("#grpResult").hide();
 
-	// Reset the table body rows.
-	var rows = $("#grpPassword #grpResult tbody tr");
-	for(var i = 0; i < rows.length; i++) {
-		$(rows[i]).remove();
-	}
+		// Reset the table body rows.
+		var rows = $("#grpPassword #grpResult tbody tr");
+		for(var i = 0; i < rows.length; i++) {
+			$(rows[i]).remove();
+		}
+	});
+	
+	$("#inPassword").blur();
 }
 
 function showLoading() {
@@ -32,18 +37,47 @@ function showError() {
 	$("#grpPassword #outError").reveal();
 }
 
-function showPassword(score) {
+function showPassword(score, breached) {
 	switch(score) {
 		case 0:
 		case 1:
-			$("#grpPassword #outDanger").reveal();
+			$("#grpPassword #outResult").addClass("alert-danger");
+			$("#grpPassword #outResult h4.alert-heading").html("Oh no!");
+			$("#grpPassword #outResult span.alert-message").html("Your password has been compromised. Please change your password immediately.");
+			$("#grpPassword #outResult").reveal();
 			break;
 		case 2:
 		case 3:
-			$("#grpPassword #outWarning").reveal();
+			if(breached) {
+				$("#grpPassword #outResult").addClass("alert-danger");
+				$("#grpPassword #outResult h4.alert-heading").html("Oh no!");
+				$("#grpPassword #outResult span.alert-message").html("Your password has been compromised. Please change your password immediately.");
+				$("#grpPassword #outResult").reveal();
+			} else {
+				$("#grpPassword #outResult").addClass("alert-warning");
+				$("#grpPassword #outResult h4.alert-heading").html("Weak Password!");
+				$("#grpPassword #outResult span.alert-message").html("Your password is easy to crack. We highly recommend changing your password.");
+				$("#grpPassword #outResult").reveal();
+			}
+
 			break;
 		case 4:
-			$("#grpPassword #outSuccess").reveal();
+			if(breached) {
+				$("#grpPassword #outResult").addClass("alert-danger");
+				$("#grpPassword #outResult h4.alert-heading").html("Oh no!");
+				$("#grpPassword #outResult span.alert-message").html("Your password has been compromised. Please change your password immediately.");
+				$("#grpPassword #outResult #btnMore").removeClass("d-none");
+				$("#grpPassword #outResult #btnMore").addClass("d-inline-block");
+				$("#grpPassword #outResult").reveal();
+			} else {
+				$("#grpPassword #outResult").addClass("alert-success");
+				$("#grpPassword #outResult h4.alert-heading").html("Good news!");
+				$("#grpPassword #outResult span.alert-message").html("Your password has been checked and deemed safe to use.");
+				$("#grpPassword #outResult #btnMore").removeClass("d-none");
+				$("#grpPassword #outResult #btnMore").addClass("d-inline-block");
+				$("#grpPassword #outResult").reveal();
+			}
+
 			break;
 	}
 

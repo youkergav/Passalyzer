@@ -47,7 +47,7 @@
           <input type="password" class="form-control" id="inPassword" name="password" placeholder="Enter a password..." aria-label="Analyze" aria-describedby="inputGroup-sizing-lg">
         
           <div class="input-group-append">
-            <span class="input-group-text c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
+            <span class="input-group-text d-none d-sm-inline-block c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
             <button id="btnAnalyze" class="btn btn-primary" data-loading-text="<i class='fa fa-spinner fa-spin fa-fw' aria-hidden='true'></i>Analyzing">
               Analyze
             </button>
@@ -55,32 +55,45 @@
         </div>
 
         <div id="grpPassword">
-          <div class="alert alert-success d-none" id="outSuccess" role="alert">
+          <div class="alert d-none" id="outResult" role="alert">
             <button type="button" class="close d-none d-md-block" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
 
-            <h4 class="alert-heading">Good news!</h4>
-            <span>Your password has been checked and deemed safe to use. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
-          </div>
+            <h4 class="alert-heading"></h4>
+            <div id="grpMessage">
+              <span class="alert-message"></span>
+              <a class="alert-link c-pointer" id="btnMore"> More info...</a>
+              <a class="alert-link d-none c-pointer" id="btnLess"> Less info...</a>
+            </div>
 
-          <div class="alert alert-warning d-none" id="outWarning" role="alert">
-            <button type="button" class="close d-none d-md-block" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <div class="d-none" id="grpResult">
+              <table id="stats">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
 
-            <h4 class="alert-heading">Weak Password!</h4>
-            <span>Your password is easy to crack. We highly recommend changing your password. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
-          </div>
+                <tbody>
+                </tbody>
+              </table>
 
+              <table id="matches">
+                <thead>
+                  <tr>
+                      <th>Token</th>
+                      <th>Pattern</th>
+                      <th>Entropy</th>
+                      <th>Matched Word</th>
+                  </tr>
+                </thead>
 
-          <div class="alert alert-danger d-none" id="outDanger" role="alert">
-            <button type="button" class="close d-none d-md-block" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-
-            <h4 class="alert-heading">Oh no!</h4>
-           <span>Your password has been compromised. Please change your password immediately. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <div class="alert alert-info d-none" id="outError" role="alert">
@@ -90,34 +103,6 @@
 
             <span>An error has occured. Please try again.</span>
           </div>
-
-          <!-- <div id="grpResult">
-            <table id="stats" style="display: none;">
-              <thead>
-                <tr>
-                  <th>Category</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-
-              <tbody>
-              </tbody>
-            </table>
-
-            <table id="matches" style="display: none; margin-top: 10px;">
-              <thead>
-                <tr>
-                    <th>Token</th>
-                    <th>Pattern</th>
-                    <th>Entropy</th>
-                    <th>Matched Word</th>
-                </tr>
-              </thead>
-
-              <tbody>
-              </tbody>
-            </table>
-          </div> -->
         </div>
       </div>
 
