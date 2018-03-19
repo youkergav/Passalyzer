@@ -28,7 +28,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/api.php">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/index.php">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="/api.php">API</a></li>
             <li class="nav-item"><a class="nav-link" href="/about.php">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/contact.php">Contact</a></li>
@@ -42,81 +42,83 @@
         <p class="lead">Trust in your passwords. Analyze your passwords to ensure the strength and authenticity. Get real-time reports of crack times and compromises. </p>
       </div>
 
-      <div class="input-group input-group-lg mb-3">
-        <input type="password" class="form-control" id="inPassword" name="password" placeholder="Enter a password..." aria-label="Analyze" aria-describedby="inputGroup-sizing-lg">
-      
-        <div class="input-group-append">
-          <span class="input-group-text c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
-          <button id="btnAnalyze" class="btn btn-primary d-none d-sm-inline" data-loading-text="<i class='fa fa-spinner fa-spin fa-fw' aria-hidden='true'></i>Analyzing">
-            Analyze
-          </button>
-        </div>
-      </div>
-
-      <div id="grpPassword">
-        <div class="alert alert-success d-none" id="outSuccess" role="alert">
-          <button type="button" class="close d-none d-md-block" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-
-          <h4 class="alert-heading">Good news!</h4>
-          <span>Your password has been checked and deemed safe to use. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
+      <div class="content" id="grpContent">
+        <div class="input-group input-group-lg mb-3">
+          <input type="password" class="form-control" id="inPassword" name="password" placeholder="Enter a password..." aria-label="Analyze" aria-describedby="inputGroup-sizing-lg">
+        
+          <div class="input-group-append">
+            <span class="input-group-text c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
+            <button id="btnAnalyze" class="btn btn-primary" data-loading-text="<i class='fa fa-spinner fa-spin fa-fw' aria-hidden='true'></i>Analyzing">
+              Analyze
+            </button>
+          </div>
         </div>
 
-        <div class="alert alert-warning d-none" id="outWarning" role="alert">
-          <button type="button" class="close d-none d-md-block" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div id="grpPassword">
+          <div class="alert alert-success d-none" id="outSuccess" role="alert">
+            <button type="button" class="close d-none d-md-block" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
 
-          <h4 class="alert-heading">Weak Password!</h4>
-          <span>Your password is easy to crack. We highly recommend changing your password. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
+            <h4 class="alert-heading">Good news!</h4>
+            <span>Your password has been checked and deemed safe to use. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
+          </div>
+
+          <div class="alert alert-warning d-none" id="outWarning" role="alert">
+            <button type="button" class="close d-none d-md-block" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <h4 class="alert-heading">Weak Password!</h4>
+            <span>Your password is easy to crack. We highly recommend changing your password. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
+          </div>
+
+
+          <div class="alert alert-danger d-none" id="outDanger" role="alert">
+            <button type="button" class="close d-none d-md-block" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <h4 class="alert-heading">Oh no!</h4>
+           <span>Your password has been compromised. Please change your password immediately. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
+          </div>
+
+          <div class="alert alert-info d-none" id="outError" role="alert">
+            <button type="button" class="close d-none d-md-block" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+            <span>An error has occured. Please try again.</span>
+          </div>
+
+          <!-- <div id="grpResult">
+            <table id="stats" style="display: none;">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              </tbody>
+            </table>
+
+            <table id="matches" style="display: none; margin-top: 10px;">
+              <thead>
+                <tr>
+                    <th>Token</th>
+                    <th>Pattern</th>
+                    <th>Entropy</th>
+                    <th>Matched Word</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              </tbody>
+            </table>
+          </div> -->
         </div>
-
-
-        <div class="alert alert-danger d-none" id="outDanger" role="alert">
-          <button type="button" class="close d-none d-md-block" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-
-          <h4 class="alert-heading">Oh no!</h4>
-         <span>Your password has been compromised. Please change your password immediately. <!-- <a href="#" class="alert-link d-inline-block">More info...</a> --></span>
-        </div>
-
-        <div class="alert alert-info d-none" id="outError" role="alert">
-          <button type="button" class="close d-none d-md-block" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-
-          <span>An error has occured. Please try again.</span>
-        </div>
-
-        <!-- <div id="grpResult">
-          <table id="stats" style="display: none;">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-
-            <tbody>
-            </tbody>
-          </table>
-
-          <table id="matches" style="display: none; margin-top: 10px;">
-            <thead>
-              <tr>
-                  <th>Token</th>
-                  <th>Pattern</th>
-                  <th>Entropy</th>
-                  <th>Matched Word</th>
-              </tr>
-            </thead>
-
-            <tbody>
-            </tbody>
-          </table>
-        </div> -->
       </div>
 
       <hr>
