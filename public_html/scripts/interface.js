@@ -12,6 +12,7 @@ function reset() {
 	$("#grpPassword #outWarning").slideUp();
 	$("#grpPassword #outSuccess").slideUp();
 	$("#grpPassword #outError").slideUp();
+	$("#inPassword").blur();
 
 	// Reset the table body rows.
 	var rows = $("#grpPassword #grpResult tbody tr");

@@ -1,14 +1,9 @@
 function parsePassword(input) {
 	if(input) {
-		// Get the post data.
-		var postData = {password: input};
-
 		// AJAX function to retrieve password data.
 		$.ajax({
-			type: "POST",
 			dataType: "JSON",
-			data: postData,
-			url: "functions/analyze.php", 
+			url: "functions/analyze.php?password=" + encodeURIComponent(input), 
 			success: function(password) {
 				// Append the statistic data to the stats table..
 				$("#grpPassword #grpResult #stats tbody").append("<tr><td>Number of Characters:</td><td>" + password.lenPass + "</td></tr>");

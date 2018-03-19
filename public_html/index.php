@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap-grid.min.css"">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap-reboot.min.css"">
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/global.css">
     <link type="text/css" rel="stylesheet" href="/css/main.css">
   </head>
 
@@ -44,8 +45,9 @@
       <div class="input-group input-group-lg mb-3">
         <input type="password" class="form-control" id="inPassword" name="password" placeholder="Enter a password..." aria-label="Analyze" aria-describedby="inputGroup-sizing-lg">
       
-        <div class="input-group-append d-none d-sm-inline-block">
-          <button id="btnAnalyze" class="btn btn-primary" data-loading-text="<i class='fa fa-spinner fa-spin fa-fw' aria-hidden='true'></i>Analyzing">
+        <div class="input-group-append">
+          <span class="input-group-text c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
+          <button id="btnAnalyze" class="btn btn-primary d-none d-sm-inline" data-loading-text="<i class='fa fa-spinner fa-spin fa-fw' aria-hidden='true'></i>Analyzing">
             Analyze
           </button>
         </div>

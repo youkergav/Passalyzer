@@ -19,15 +19,19 @@
 	use ZxcvbnPhp\Zxcvbn;
 
 	class Password {
+		// Private variables.
+		private $password;
+
 		// Constructor for password object.
 		public function __construct($input) {
 			// Build object attributes.
-			$this->password = $input;
+			$password = $input;
+
 			$this->lenPass= strlen($input);
 			$this->lenAlpha = strLen(preg_replace("/[0-9]+/", "", $input));
 			$this->lenNumeric = strLen(preg_replace("/[^0-9]+/", "", $input));
 			$this->lenSpecial = strLen(preg_replace("/[A-Za-z0-9]+/", "", $input));
-			$this->isBreached();
+			$this->isBreached($password);
 
 			// Create zxcvbn object for more info. *REMOVE LATER*
 			$zxcvbn = new Zxcvbn();
@@ -55,10 +59,10 @@
 		}
 
 		// Method to detect if password is in breach.
-		private function isBreached() {
+		private function isBreached($password) {
 			// Create a curl request.
 			$curl = curl_init();
-			curl_setopt($curl, CURLOPT_URL, 'https://api.pwnedpasswords.com/pwnedpassword/'.$this->password);
+			curl_setopt($curl, CURLOPT_URL, 'https://api.pwnedpasswords.com/pwnedpassword/'.$password);
 			curl_setopt($curl, CURLOPT_HEADER, false);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 			curl_exec($curl);
