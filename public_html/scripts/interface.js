@@ -14,6 +14,12 @@ function reset() {
 		$("#grpPassword #outResult").removeClass("alert-danger");
 		$("#grpPassword #outResult h4.alert-heading").html("");
 		$("#grpPassword #outResult span.alert-message").html("");
+
+		$("#btnLess").addClass("d-none");
+		$("#btnLess").removeClass("d-inline");
+		$("#btnMore").addClass("d-inline");
+		$("#btnMore").removeClass("d-none");
+
 		$("#grpResult").hide();
 
 		// Reset the table body rows.
@@ -22,7 +28,7 @@ function reset() {
 			$(rows[i]).remove();
 		}
 	});
-	
+
 	$("#inPassword").blur();
 }
 
@@ -66,15 +72,11 @@ function showPassword(score, breached) {
 				$("#grpPassword #outResult").addClass("alert-danger");
 				$("#grpPassword #outResult h4.alert-heading").html("Oh no!");
 				$("#grpPassword #outResult span.alert-message").html("Your password has been compromised. Please change your password immediately.");
-				$("#grpPassword #outResult #btnMore").removeClass("d-none");
-				$("#grpPassword #outResult #btnMore").addClass("d-inline-block");
 				$("#grpPassword #outResult").reveal();
 			} else {
 				$("#grpPassword #outResult").addClass("alert-success");
 				$("#grpPassword #outResult h4.alert-heading").html("Good news!");
 				$("#grpPassword #outResult span.alert-message").html("Your password has been checked and deemed safe to use.");
-				$("#grpPassword #outResult #btnMore").removeClass("d-none");
-				$("#grpPassword #outResult #btnMore").addClass("d-inline-block");
 				$("#grpPassword #outResult").reveal();
 			}
 

@@ -1,11 +1,20 @@
 @media (max-width: 768px) {
   .container {
-    width: 100%;
-    max-width: none;
-    padding: 0;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .jumbotron {
+  	border-radius: 0 !important;
   }
 
   .content {
-  	padding: 0 15px;
+  	padding: 0 15px !important;
   }
+}
+
+.bg-secondary {
+	background-color: #e9ecef !important;
 }
