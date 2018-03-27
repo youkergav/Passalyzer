@@ -70,9 +70,20 @@
             </div>
 
             <div class="d-none" id="grpResult">
-              <table id="stats">
+              <hr>
+              <div class="row">
+                <div class="col-4">
+                  <div class="list-group" id="list-tab-result" role="tablist"></div>
+                </div>
+
+                <div class="col-8">
+                  <div class="tab-content" id="nav-tabContent-result"></div>
+                </div>
+              </div>
+
+              <!-- <table id="stats">
                 <thead>
-                  <tr>
+                  <tr>  
                     <th>Category</th>
                     <th>Value</th>
                   </tr>
@@ -94,7 +105,7 @@
 
                 <tbody>
                 </tbody>
-              </table>
+              </table> -->
             </div>
           </div>
 
