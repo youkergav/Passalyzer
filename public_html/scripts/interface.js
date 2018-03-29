@@ -38,12 +38,6 @@ function showLoading() {
 	$("#btnAnalyze").html($("#btnAnalyze").data("loading-text"));
 }
 
-function showError() {
-	// Show the error content.
-	$('#btnAnalyze').html("Analyze");
-	$("#grpPassword #outError").reveal();
-}
-
 function showInfo(key) {
 	switch(key) {
 		case "danger":
@@ -88,25 +82,21 @@ function showInfo(key) {
 				.addClass("tab-pane fade show active")
 				.attr("id", "list-problems")
 				.attr("role", "tabpanel")
-				.html("Problems...")
 			);
 			$("#nav-tabContent-result").append($("<div></div>")
 				.addClass("tab-pane fade")
 				.attr("id", "list-solutions")
 				.attr("role", "tabpanel")
-				.html("Solutions...")
 			);
 			$("#nav-tabContent-result").append($("<div></div>")
 				.addClass("tab-pane fade")
 				.attr("id", "list-stats")
 				.attr("role", "tabpanel")
-				.html("Statistics...")
 			);
 			$("#nav-tabContent-result").append($("<div></div>")
 				.addClass("tab-pane fade")
 				.attr("id", "list-matches")
 				.attr("role", "tabpanel")
-				.html("Matches...")
 			);
 
 			$("#grpPassword #outResult").reveal();
@@ -154,25 +144,21 @@ function showInfo(key) {
 				.addClass("tab-pane fade show active")
 				.attr("id", "list-problems")
 				.attr("role", "tabpanel")
-				.html("Problems...")
 			);
 			$("#nav-tabContent-result").append($("<div></div>")
 				.addClass("tab-pane fade")
 				.attr("id", "list-solutions")
 				.attr("role", "tabpanel")
-				.html("Solutions...")
 			);
 			$("#nav-tabContent-result").append($("<div></div>")
 				.addClass("tab-pane fade")
 				.attr("id", "list-stats")
 				.attr("role", "tabpanel")
-				.html("Statistics...")
 			);
 			$("#nav-tabContent-result").append($("<div></div>")
 				.addClass("tab-pane fade")
 				.attr("id", "list-matches")
 				.attr("role", "tabpanel")
-				.html("Matches...")
 			);
 
 			$("#grpPassword #outResult").reveal();
@@ -204,13 +190,11 @@ function showInfo(key) {
 				.addClass("tab-pane fade show active")
 				.attr("id", "list-stats")
 				.attr("role", "tabpanel")
-				.html("Statistics...")
 			);
 			$("#nav-tabContent-result").append($("<div></div>")
 				.addClass("tab-pane fade")
 				.attr("id", "list-matches")
 				.attr("role", "tabpanel")
-				.html("Matches...")
 			);
 
 			$("#grpPassword #outResult").reveal();
@@ -218,30 +202,125 @@ function showInfo(key) {
 	}
 }
 
-function showPassword(score, breached) {
-	switch(score) {
-		case 0:
-		case 1:
-			showInfo("danger");
-			break;
-		case 2:
-		case 3:
-			if(breached) {
-				showInfo("danger");
-			} else {
-				showInfo("warning");
-			}
+function showMatches(matches, key) {
+	$("#list-matches").append($("<table></table>")
+		.attr("id", "table-matches")
+		.addClass("table text-center")
+		.append($("<tr></tr>")
+			.append($("<th></th>")
+				.addClass("border-header-" + key)
+				.attr("col", "row")
+				.html("Token")
+			)
+			.append($("<th></th>")
+				.addClass("border-header-" + key)
+				.attr("col", "row")
+				.html("Pattern")
+			)
+			.append($("<th></th>")
+				.addClass("border-header-" + key)
+				.attr("col", "row")
+				.html("Entropy")
+			)
+			.append($("<th></th>")
+				.addClass("border-header-" + key)
+				.attr("col", "row")
+				.html("Word")
+			)
+		)
+	);
 
-			break;
-		case 4:
-			if(breached) {
-				showInfo("danger");
-			} else {
-				showInfo("success");
-			}
+	for(var i = 0; i < matches.length; i++) {
+		var token = matches[i]["token"];
+		var pattern = matches[i]["pattern"].charAt(0).toUpperCase() + matches[i]["pattern"].slice(1)
+		if(Math.floor(matches[i]["entropy"]) != 0) { entropy = Math.floor(matches[i]["entropy"]) + " bits"; } else { entropy = "&mdash;"; }
+		if(matches[i]["matchedWord"]) { word = matches[i]["matchedWord"]; } else { word = "&mdash;"; }
 
-			break;
+		if(i == 0){
+			$("#list-matches table").append($("<tr></tr>")
+				.addClass("table-" + key)
+				.append($("<td></td>")
+					.addClass("border-none")
+					.html(token)
+				)
+				.append($("<td></td>")
+					.addClass("border-none")
+					.html(pattern)
+				)
+				.append($("<td></td>")
+					.addClass("border-none")
+					.html(entropy)
+				)
+				.append($("<td></td>")
+					.addClass("border-none")
+					.html(word)
+				)
+			);
+		} else {
+			$("#list-matches table").append($("<tr></tr>")
+				.addClass("table-" + key)
+				.append($("<td></td>").html(token))
+				.append($("<td></td>").html(pattern))
+				.append($("<td></td>").html(entropy))
+				.append($("<td></td>").html(word))
+			);
+		}
+	}
+}
+
+function formatSeconds(seconds) {
+	var years = Math.floor(seconds / 31536000);
+	var months = Math.floor((seconds % 31536000) / 2592000);
+	var days = Math.floor(((seconds % 31536000) % 2592000) / 86400);
+	var hours = Math.floor((((seconds % 31536000) % 2592000) % 86400) / 3600);
+	var minutes = Math.floor(((((seconds % 31536000) % 2592000) % 86400) % 3600) / 60);
+	var seconds = Math.floor((((seconds % 31536000) % 2592000) % 86400) % 3600) % 60;
+
+	var output = "";
+	if(years > 0) {
+		if(years > 999) {
+			output += years.toLocaleString() + " years"; 
+		} else {
+			if(years == 1) { output += years.toLocaleString() + " year "; } else { output += years.toLocaleString() + " years "; }
+			if(months == 1) { output +=  months + " month ";} else { output += months + " months "; }
+			if(days == 1) { output += days + " day "; } else { output += days + " days "; }
+			if(hours == 1) { output += hours + " hour "; } else { output += hours + " hours "; }
+			if(minutes == 1) { output += minutes + " minute and "; } else { output += minutes + " minutes and "; }
+			if(seconds == 1) { output += seconds + " second"; } else { output += seconds + " seconds"; } 
+		}
+	} else {
+		if(months > 0) {
+			if(months == 1) { output +=  months + " month ";} else { output += months + " months "; }
+			if(days == 1) { output += days + " day "; } else { output += days + " days "; }
+			if(hours == 1) { output += hours + " hour "; } else { output += hours + " hours "; }
+			if(minutes == 1) { output += minutes + " minute and "; } else { output += minutes + " minutes and "; }
+			if(seconds == 1) { output += seconds + " second"; } else { output += seconds + " seconds"; }
+		} else {
+			if(days > 0) {
+				if(days == 1) { output += days + " day "; } else { output += days + " days "; }
+				if(hours == 1) { output += hours + " hour "; } else { output += hours + " hours "; }
+				if(minutes == 1) { output += minutes + " minute and "; } else { output += minutes + " minutes and "; }
+				if(seconds == 1) { output += seconds + " second"; } else { output += seconds + " seconds"; }
+			} else {
+				if(hours > 0) {
+					if(hours == 1) { output += hours + " hour "; } else { output += hours + " hours "; }
+					if(minutes == 1) { output += minutes + " minute and "; } else { output += minutes + " minutes and "; }
+					if(seconds == 1) { output += seconds + " second"; } else { output += seconds + " seconds"; }
+				} else {
+					if(minutes > 0) {
+						if(minutes == 1) { output += minutes + " minute and "; } else { output += minutes + " minutes and "; }
+						if(seconds == 1) { output += seconds + " second"; } else { output += seconds + " seconds"; }
+					} else {
+						if(seconds > 0) {
+							if(seconds == 1) { output += seconds + " second"; } else { output += seconds + " seconds"; }
+						} else {
+							return("less than a second");
+						}
+					}
+				}
+			}
+		}
 	}
 
-	$("#btnAnalyze").html("Analyze");
+	return(output);
 }

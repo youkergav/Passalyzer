@@ -80,32 +80,6 @@
                   <div class="tab-content" id="nav-tabContent-result"></div>
                 </div>
               </div>
-
-              <!-- <table id="stats">
-                <thead>
-                  <tr>  
-                    <th>Category</th>
-                    <th>Value</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                </tbody>
-              </table>
-
-              <table id="matches">
-                <thead>
-                  <tr>
-                      <th>Token</th>
-                      <th>Pattern</th>
-                      <th>Entropy</th>
-                      <th>Matched Word</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                </tbody>
-              </table> -->
             </div>
           </div>
 
