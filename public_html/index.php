@@ -72,11 +72,12 @@
             <div class="d-none" id="grpResult">
               <hr>
               <div class="row">
-                <div class="col-4">
+                <div class="col-sm-12 col-md-4">
                   <div class="list-group" id="list-tab-result" role="tablist"></div>
                 </div>
 
-                <div class="col-8">
+                <div class="col-sm-12 col-md-8">
+                  <hr class="d-block d-md-none">
                   <div class="tab-content" id="nav-tabContent-result"></div>
                 </div>
               </div>
