@@ -12,41 +12,23 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap-grid.min.css"">
     <link type="text/css" rel="stylesheet" href="/css/bootstrap-reboot.min.css"">
-    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/fontawesome.min.css">
     <link type="text/css" rel="stylesheet" href="/css/global.css">
     <link type="text/css" rel="stylesheet" href="/css/main.css">
   </head>
 
   <body>
     <div class="container" id="grpContainer">
-      <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand" href="/index.php">Passalyer</a>
+      <?php include("includes/content/header.inc"); ?>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a class="nav-link" href="/index.php">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="/api.php">API</a></li>
-              <li class="nav-item"><a class="nav-link" href="/about.php">About</a></li>
-              <li class="nav-item"><a class="nav-link" href="/contact.php">Contact</a></li>
-              <li class="nav-item"><a class="nav-link" href="/donate.php">Donate</a></li>
-            </ul>
-          </div>
-        </nav>
-
+      <div class="content" id="grpContent">
         <div class="jumbotron bg-secondary text-center text-md-left" style="border-top-left-radius: 0; border-top-right-radius: 0;">
           <h1 class="display-4">Passalyzer</h1>
           <p class="lead">Trust in your passwords. Analyze your passwords to ensure the strength and authenticity. Get real-time reports of crack times and compromises. We never store your passwords.</p>
         </div>
-      </header>
 
-      <div class="content" id="grpContent">
         <div class="input-group input-group-lg mb-3">
-          <input type="password" class="form-control" id="inPassword" name="password" placeholder="Enter a password..." aria-label="Analyze" aria-describedby="inputGroup-sizing-lg">
+          <input id="inPassword" class="form-control" type="password" name="password" placeholder="Enter a password..." aria-label="Analyze" aria-describedby="inputGroup-sizing-lg">
         
           <div class="input-group-append">
             <span class="input-group-text bg-secondary d-none d-sm-inline-block c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
@@ -94,37 +76,69 @@
         </div>
       </div>
 
-      <footer>
-        <div class="container mt-4-5 bg-primary rounded">
-          <div class="row pt-2 d-flex align-items-center">
-            <div class="col-md-6 col-lg-5 text-center text-md-left">
-              <h6 class="mb-0 text-white">A Gavin Youker Project</h6>
-            </div>
-
-            <div class="col-md-6 col-lg-7 text-center text-md-right">
-              <a href="https://www.facebook.com/youkergav" target="_new"><i class="fa fa-facebook text-white mr-lg-4"> </i></a>
-              <a href="https://twitter.com/youkergav" target="_new"><i class="fa fa-twitter text-white mr-lg-4"> </i></a>
-              <a href="https://www.instagram.com/youkergav" target="_new"><i class="fa fa-instagram text-white mr-lg-4"> </i></a>
-              <a href="https://github.com/youkergav" target="_new"><i class="fa fa-github text-white mr-lg-4"> </i></a>
-              <a href="https://www.linkedin.com/in/youkergav" target="_new"><i class="fa fa-linkedin text-white"> </i></a>
-            </div>
-          </div>
-
-          <div class="row pb-2 d-flex align-items-center">
-            <div class="col-12 text-center">
-              <span class="text-white">&copy; 2018 Passalyzer.com</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <?php include("includes/content/footer.inc"); ?>
     </div>
 
     <script type="text/javascript" src="/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/scripts/popper.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="/scripts/interface.js"></script>
-    <script type="text/javascript" src="/scripts/events.js"></script>
+    <script type="text/javascript" src="/scripts/functions.js"></script>
     <script type="text/javascript" src="/scripts/password.js"></script>
+    <script type="text/javascript">
+      $("#btnVisibility").click(function() {
+        if($("#inPassword").prop("type") == "password") {
+          $("#inPassword").prop("type", "text");
+          $("#icnVisibility").removeClass("fa-eye-slash");
+          $("#icnVisibility").addClass("fa-eye");
+        } else if($("#inPassword").prop("type") == "text") {
+          $("#inPassword").prop("type", "password");
+          $("#icnVisibility").removeClass("fa-eye");
+          $("#icnVisibility").addClass("fa-eye-slash");
+        }
+      });
+
+      $("#btnAnalyze").click(function() {
+        var input = $("#inPassword").val();
+
+        if(input) {
+          // Parse out the password data.
+          showLoading();
+          parsePassword(input);
+        }
+      });
+
+      $("#inPassword").keypress(function(e) {
+        if (e.which == 13) {
+            var input = $("#inPassword").val();
+
+          if(input) {
+            // Parse out the password data.
+            showLoading();
+            parsePassword(input);
+          }
+          }
+      });
+
+      $("#btnMore").click(function() {
+        $("#grpResult").reveal();
+        $("#btnMore").addClass("d-none");
+        $("#btnMore").removeClass("d-inline");
+        $("#btnLess").addClass("d-inline");
+        $("#btnLess").removeClass("d-none");
+      });
+
+      $("#btnLess").click(function() {
+        $("#grpResult").slideUp();
+        $("#btnLess").addClass("d-none");
+        $("#btnLess").removeClass("d-inline");
+        $("#btnMore").addClass("d-inline");
+        $("#btnMore").removeClass("d-none");
+      });
+
+      $("button.close").click(function() {
+        reset();
+      });
+    </script>
   </body>
 </html>
