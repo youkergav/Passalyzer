@@ -31,18 +31,43 @@
         <div class="mt-4-5" id="grpAPI">
           <h5 class="mb-3">Scan a Password</h5>
 
-          <div class="row mb-2">
+          <div class="row">
             <div class="col-lg-8">
               <label class="form-control-label" for="inScan">URL</label>
-              <input id="inScan" class="form-control" type="text" value="https://passalyzer.com/functions/analyze/password/test" disabled>
+              <pre class="coding">https://passalyzer.com/api/password/testing123</pre>
             </div>
           </div>
 
           <div class="row">
             <div class="col-lg-8">
               <label class="form-control-label" for="outScan">Response</label>
-              <textarea id="outScan" class="form-control" type="text" name="message" rows="15" disabled>{ &#013;&#010; "lenPass": 4, &#013;&#010; "lenAlpha": 4, &#013;&#010; "lenNumeric": 0, &#013;&#010; "lenSpecial": 0, &#013;&#010; "breached": true, &#013;&#010; "entropy": 5.08746284125034, &#013;&#010; "timeCrack": 0.0017000000000000008, &#013;&#010; "timeCalc": 0.045007944107055664, &#013;&#010; "score": 0, &#013;&#010; "matches": "W3sidG9rZW4iOiJ0ZXN0IiwicGF0dGVybiI6ImRpY3Rpb25hcnkiLCJlbnRyb3B5IjpudWxsLCJtYXRjaGVkV29yZCI6InRlc3QifV0="&#013;&#010;}
-              </textarea>
+              <pre class="coding">
+                { 
+                  "lenPass": 10, 
+                  "lenAlpha": 7, 
+                  "lenNumeric": 3, 
+                  "lenSpecial": 0, 
+                  "breached": true, 
+                  "entropy": 10.672425341971497, 
+                  "timeCrack": 0.08160000000000009, 
+                  "timeCalc": 0.039192914962768555, 
+                  "score": 0, 
+                  "matches": [ 
+                    { 
+                      "token": "testing", 
+                      "pattern": "dictionary", 
+                      "entropy": null, 
+                      "matchedWord": "testing" 
+                    }, 
+                    { 
+                      "token": "123", 
+                      "pattern": "sequence", 
+                      "entropy": null, 
+                      "matchedWord": null 
+                    } 
+                  ] 
+                } 
+              </pre>
             </div>
           </div>
         </div>
@@ -56,5 +81,8 @@
     <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="/scripts/functions.js"></script>
+    <script type="text/javascript">
+      formatCode();
+    </script>
   </body>
 </html>

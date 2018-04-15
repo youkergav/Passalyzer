@@ -67,3 +67,19 @@ function copyText(input) {
 	input.select();
 	document.execCommand("Copy");
 }
+
+function formatCode() {
+	$("pre.coding").each(function(pre) {
+	  var lines = $(this).html().split("\n");
+	  var matches;
+	  var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
+
+	  if (!!indentation) {
+	    lines = lines.map(function(line) {
+	      return line.replace(indentation, "");
+	    });
+
+	    return $(this).html(lines.join("\n").trim());
+	  }
+	});
+}
