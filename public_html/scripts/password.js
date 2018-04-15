@@ -333,7 +333,7 @@ function parsePassword(input) {
 		// AJAX function to retrieve password data.
 		$.ajax({
 			dataType: "JSON",
-			url: "functions/analyze?password=" + encodeURIComponent(input), 
+			url: "api/password/" + encodeURIComponent(input), 
 			success: function(password) {
 				// Append the overview data.
 				switch(password.score) {
@@ -367,7 +367,7 @@ function parsePassword(input) {
 							.append($("<li></li>").html("Add special characters and numbers to the password so it can't be easily guessed."))
 						);
 
-						showMatches(JSON.parse(atob(password.matches)), "danger");
+						showMatches(password.matches, "danger");
 
 						break;
 					case 2:
@@ -400,7 +400,7 @@ function parsePassword(input) {
 								.append($("<li></li>").html("Don't just replace letters with special character \"lookalikes\". <i>Example: \"password\" and \"p@$$w0rd\"</i>"))
 							);
 
-							showMatches(JSON.parse(atob(password.matches)), "danger");
+							showMatches(password.matches, "danger");
 						} else {
 							showInfo("warning");
 
@@ -417,7 +417,7 @@ function parsePassword(input) {
 								.append($("<li></li>").html("Don't just replace letters with special character \"lookalikes\". <i>Example: \"password\" and \"p@$$w0rd\"</i>"))
 							);
 
-							showMatches(JSON.parse(atob(password.matches)), "warning");
+							showMatches(password.matches, "warning");
 						}
 
 						break;
@@ -437,10 +437,10 @@ function parsePassword(input) {
 								.append($("<li></li>").html("Use a different password that has not been found in a database breach."))
 							);
 
-							showMatches(JSON.parse(atob(password.matches)), "danger");
+							showMatches(password.matches, "danger");
 						} else {
 							showInfo("success");
-							showMatches(JSON.parse(atob(password.matches)), "success");
+							showMatches(password.matches, "success");
 						}
 
 						break;
@@ -461,7 +461,6 @@ function parsePassword(input) {
 					.append($("<li></li>").html("It would take <i>" + formatSeconds(password.timeCrack) + "</i> to crack this password.</i>"))
 				);
 
-				console.log(password);
 				$("#btnAnalyze").html("Analyze");
 			},
 			statusCode: {

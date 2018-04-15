@@ -53,7 +53,7 @@
 
 				array_push($matches, $piece);
 			}
-			$this->matches = base64_encode(json_encode($matches));
+			$this->matches = $matches;
 
 			unset($zxcvbn);
 		}
