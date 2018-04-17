@@ -1,0 +1,38 @@
+{
+  "name": "passalyzer",
+  "version": "1.0.0",
+  "description": "Create betterr passwords.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youkergav/Passalyzer.git"
+  },
+  "author": "Gavin Youker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/youkergav/Passalyzer/issues"
+  },
+  "homepage": "https://github.com/youkergav/Passalyzer#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-minify-inline": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.6",
+    "bootstrap": "^4.1.0",
+    "cryptocoins-icons": "^2.7.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3"
+  }
+}
