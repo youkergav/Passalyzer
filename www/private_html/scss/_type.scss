@@ -1,0 +1,46 @@
+.display-5 {
+  font-size: 3.15rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.required {
+  color: #b80303;
+}
+
+.sub {
+  font-size: 2.35rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.type {
+  margin-bottom: .5rem;
+}
+
+.coding {
+  padding: 6px 12px;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+
+@font-face {
+  font-family: "cryptocoins";
+  src: 
+    url('#{$crypto-font-path}/cryptocoins.woff2') format('woff2'),
+    url('#{$crypto-font-path}/cryptocoins.woff') format('woff'),
+    url('#{$crypto-font-path}/cryptocoins.ttf') format('truetype');
+}
+
+.fa-paypal {
+  color: $paypal-color;
+}
+
+.BTC-alt {
+  color: $bitcoin-color;
+}
+
+.LTC-alt {
+  color: $litecoin-color;
+}

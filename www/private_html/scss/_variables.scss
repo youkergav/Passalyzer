@@ -1,0 +1,19 @@
+// Custom
+$font-path: "../fonts";
+
+// Bootstrap
+$theme-colors: (
+  "primary": #3e6fa2,
+  "secondary": #f9f9f9
+);
+
+$spacer: 1.5rem !default;
+
+// Font Awesome
+$fa-font-path: $font-path;
+
+// Cryptocoins
+$crypto-font-path: $font-path;
+$paypal-color: #2997d8;
+$bitcoin-color: #ff9900;
+$litecoin-color: #bebebe;

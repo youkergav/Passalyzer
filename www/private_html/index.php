@@ -9,26 +9,26 @@
     <meta name="description" content="Password analysis web tool and browser extension.">
     <meta name="copyright" content="2018">
 
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="/css/fontawesome.min.css">
     <link type="text/css" rel="stylesheet" href="/css/styles.min.css">
   </head>
 
   <body>
-    <div class="container" id="grpContainer">
+    <div class="container-fluid px-0" id="grpContainer">
       <?php include("includes/content/header.inc"); ?>
 
-      <div class="content" id="grpContent">
-        <div class="jumbotron bg-secondary text-center text-md-left" style="border-top-left-radius: 0; border-top-right-radius: 0;">
-          <h1 class="display-4">Passalyzer</h1>
-          <p class="lead">Trust in your passwords. Analyze your passwords to ensure the strength and authenticity. Get real-time reports of crack times and compromises. We never store your passwords.</p>
+        <div class="jumbotron text-center text-md-left">
+          <div class="container">
+            <h1 class="display-4">Passalyzer</h1>
+            <p class="lead">Trust in your passwords. Analyze your passwords to ensure the strength and authenticity. Get real-time reports of crack times and compromises. We never store your passwords.</p>
+          </div>
         </div>
 
+      <div class="container" id="grpContent">
         <div class="input-group input-group-lg mb-3">
           <input id="inPassword" class="form-control" type="password" name="password" placeholder="Enter a password..." aria-label="Analyze" aria-describedby="inputGroup-sizing-lg">
         
           <div class="input-group-append">
-            <span class="input-group-text bg-secondary d-none d-sm-inline-block c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
+            <span class="input-group-text d-none d-sm-inline-block c-pointer" id="btnVisibility"><i class="fa fa-eye-slash" id="icnVisibility"></i></span>
             <button id="btnAnalyze" class="btn btn-primary" data-loading-text="<i class='fa fa-spinner fa-spin fa-fw' aria-hidden='true'></i>Analyzing">
               Analyze
             </button>
@@ -68,7 +68,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
 
-            <span>An error has occured. Please try again.</span>
+            <span>An error has occurred. Please try again.</span>
           </div>
         </div>
       </div>

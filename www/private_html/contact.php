@@ -15,10 +15,10 @@
   </head>
 
   <body>
-    <div class="container" id="grpContainer">
+    <div class="container-fluid px-0" id="grpContainer">
       <?php include("includes/content/header.inc"); ?>
 
-      <div class="content mt-4-5" id="grpContent">
+      <div class="container mt-4-5" id="grpContent">
         <div class="col-lg-9 text-center px-0 text-md-left">
           <h1 id="test" class="display-5">Get in Touch</h1>
 

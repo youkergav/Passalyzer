@@ -30,10 +30,16 @@ gulp.task("commitPhp", function() {
 		.pipe(gulp.dest(prod));
 });
 
-// Convert, minimize and copy CSS files to distribution.
-gulp.task("commitCss", function() {
-	gulp.src(dev + "/scss/**/*.scss")
+// Convert SASS to CSS.
+gulp.task("convertSass", function() {
+	gulp.src(dev + "/scss/main.scss")
 		.pipe(sass()).on("error", sass.logError)
+		.pipe(gulp.dest(dev + "/css"));
+});
+
+// Minimize and copy CSS files to distribution. 
+gulp.task("commitCss", ["convertSass"], function() {
+	gulp.src(dev + "/css/**/*.css")
 		.pipe(cssMin())
 		.pipe(concat("styles.min.css"))
 		.pipe(gulp.dest(prod + "/css"));
@@ -55,24 +61,8 @@ gulp.task("commitImages", function() {
 
 // Copy the dependencies to the distribution.
 gulp.task("commitDepends", function() {
-	 // Bootstrap
-	 var path = "node_modules/bootstrap";
-	 gulp.src(path + "/scss/bootstrap.scss")
-	 	.pipe(sass()).on("error", sass.logError)
-	 	.pipe(cssMin())
-	 	.pipe(rename("bootstrap.min.css"))
-	 	.pipe(gulp.dest(prod + "/css"));
-	 gulp.src([path + "/dist/js/bootstrap.min.js", "node_modules/popper.js/dist/umd/popper.min.js"])
-	 	.pipe(concat("bootstrap.min.js"))
-	 	.pipe(gulp.dest(prod + "/js"));
-
 	 // Font Awesome
 	 var path = "node_modules/@fortawesome/fontawesome-free-webfonts";
-	 gulp.src([path + "/scss/fontawesome.scss", path + "/scss/fa-brands.scss", path + "/scss/fa-regular.scss", path + "/scss/fa-solid.scss"])
-	 	.pipe(sass()).on("error", sass.logError)
-	 	.pipe(cssMin())
-	 	.pipe(concat("fontawesome.min.css"))
-	 	.pipe(gulp.dest(prod + "/css"));
 	 gulp.src(path + "/webfonts/**/*")
 	 	.pipe(gulp.dest(prod + "/fonts"));
 
