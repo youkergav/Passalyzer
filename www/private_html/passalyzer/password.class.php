@@ -81,7 +81,7 @@
 
 		// Method to convert object to JSON.
 		public function toJSON() {
-			return json_encode($this);
+			return json_encode($this, JSON_PRETTY_PRINT);
 		}
 	}
 ?>

@@ -24,4 +24,4 @@
                     } 
                   ] 
                 } 
-              </pre></div></div></div></div> <?php include("includes/content/footer.inc"); ?> </div><script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/functions.js"></script><script type="text/javascript">formatCode();</script></body></html>
+              </pre></div></div></div></div> <?php include("includes/content/footer.inc"); ?> </div> <?php include("includes/globals/scripts.php"); ?> <script type="text/javascript" src="/js/jquery.min.js"></script><script type="text/javascript" src="/js/bootstrap.min.js"></script><script type="text/javascript" src="/js/functions.js"></script><script type="text/javascript">formatCode();</script></body></html>

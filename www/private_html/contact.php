@@ -101,6 +101,7 @@
       </div>
     </div>
 
+    <?php include("includes/globals/scripts.php"); ?>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
